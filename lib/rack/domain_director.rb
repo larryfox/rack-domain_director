@@ -5,7 +5,7 @@ class Rack::DomainDirector
   def initialize(app, opts = {})
     @app             = app
     @to              = opts.fetch(:to)
-    @from            = opts.fetch(:from)
+    @from            = Array(opts.fetch(:from))
     @status          = opts.fetch(:status, 301)
     @before_redirect = opts.fetch(:before_redirect, ->(req) {})
   end
@@ -24,11 +24,18 @@ class Rack::DomainDirector
 
   def redirect(req)
     @before_redirect.call(req)
-    req.host = req.host.sub(%r{#{ Regexp.escape(@from) }$}, @to)
+    req.host = req.host.sub(from_regexp, @to)
     [@status, {'Location' => req.url}, []]
   end
 
+  def from_regexp
+    @from_regexp ||= begin
+      from = @from.map { |x| Regexp.escape(x) }.join('|')
+      %r{(#{ from })$}
+    end
+  end
+
   def redirectable?(req)
-    req.host.end_with?(@from)
+    req.host.end_with?(*@from)
   end
 end
