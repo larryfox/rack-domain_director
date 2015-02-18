@@ -14,8 +14,8 @@ class Minitest::Test
   def mock_app(opts = {})
     @app = Rack::Builder.new do
       use Rack::DomainDirector,
-          from: '.net',
-          to: '.com',
+          from: opts.fetch(:from, '.net'),
+          to: opts.fetch(:to, '.com'),
           status: opts.fetch(:status, 301),
           before_redirect: opts.fetch(:before_redirect, ->(x){})
 
