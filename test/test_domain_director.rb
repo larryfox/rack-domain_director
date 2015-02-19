@@ -63,6 +63,11 @@ class TestDomainDirector < Minitest::Test
     get 'https://example.net/123/abc?a=b&c=d'
     assert_location 'https://example.com/123/abc?a=b&c=d'
   end
+
+  def test_that_it_preserves_subdomains
+    get 'https://a.example.net/123/abc'
+    assert_location 'https://a.example.com/123/abc'
+  end
 end
 
 class TestDomainDirector_BeforeRedirectOption < Minitest::Test
