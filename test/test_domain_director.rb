@@ -49,17 +49,17 @@ class TestDomainDirector < Minitest::Test
     assert_status 200
   end
 
-  def test_that_it_conserves_scheme
+  def test_that_it_preserves_scheme
     get 'https://example.net/123/abc'
     assert_location 'https://example.com/123/abc'
   end
 
-  def test_that_it_conserves_non_standard_ports
+  def test_that_it_preserves_non_standard_ports
     get 'http://example.net:9000/123/abc'
     assert_location 'http://example.com:9000/123/abc'
   end
 
-  def test_that_it_conserves_query_strings
+  def test_that_it_preserves_query_strings
     get 'https://example.net/123/abc?a=b&c=d'
     assert_location 'https://example.com/123/abc?a=b&c=d'
   end

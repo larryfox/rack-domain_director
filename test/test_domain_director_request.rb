@@ -8,7 +8,7 @@ class TestDomainDirectorRequest < Minitest::Test
       Rack::MockRequest.env_for('http://example.com:8080/')
   end
 
-  def test_it_conserves_host
+  def test_it_preserves_host
     assert_equal 'example.com', @req.host
   end
 
