@@ -2,6 +2,9 @@
 
 Rack middleware for redirecting one domain to another.
 
+[![Build Status](https://travis-ci.org/larryfox/rack-domain_director.svg?branch=master)](https://travis-ci.org/larryfox/rack-domain_director)
+[![Code Climate](https://codeclimate.com/github/larryfox/rack-domain_director/badges/gpa.svg)](https://codeclimate.com/github/larryfox/rack-domain_director)
+
 Usage:
 
 ```ruby
