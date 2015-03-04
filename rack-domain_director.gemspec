@@ -15,6 +15,10 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.0' # most definitely less
 
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rack-test'
+  gem.add_development_dependency 'minitest', '~> 5.5.1'
+
   gem.files         += Dir.glob('lib/**/*.rb')
   gem.test_files    = Dir.glob('test/**/*')
   gem.require_paths = ['lib']
